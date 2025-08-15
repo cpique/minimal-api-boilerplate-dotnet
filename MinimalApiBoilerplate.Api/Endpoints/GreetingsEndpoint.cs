@@ -2,7 +2,6 @@
 using Asp.Versioning.Builder;
 using MinimalApiBoilerplate.Api.Authentication;
 using MinimalApiBoilerplate.Application.Responses;
-using MinimalApiBoilerplate.Application.Services;
 using System.Net;
 
 namespace MinimalApiBoilerplate.Api.Endpoints;
