@@ -1,0 +1,2 @@
+﻿1-Add integration tests
+2-Improve unit tests, they are just the start of the effort
