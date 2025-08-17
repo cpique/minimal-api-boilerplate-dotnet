@@ -7,6 +7,7 @@ using MinimalApiBoilerplate.Api.Configuration;
 using MinimalApiBoilerplate.Api.Middleware;
 using Scalar.AspNetCore;
 using TickerQ.DependencyInjection;
+using Serilog;
 
 namespace MinimalApiBoilerplate.Api;
 
@@ -45,6 +46,19 @@ public class Program
         builder.Services.ConfigureRepositories();
         builder.Services.ConfigureValidators();
         builder.Services.ConfigureTickerQ();
+
+
+        // Configure Serilog
+        builder.Host.UseSerilog((context, services, configuration) =>
+        {
+            configuration
+                .ReadFrom.Configuration(context.Configuration)
+                .ReadFrom.Services(services)
+                .WriteTo.Console()
+                .WriteTo.File(
+                    path: context.Configuration.GetValue<string>("Logging:File:Path"),
+                    rollingInterval: RollingInterval.Day);
+        });
 
         var app = builder.Build();
 

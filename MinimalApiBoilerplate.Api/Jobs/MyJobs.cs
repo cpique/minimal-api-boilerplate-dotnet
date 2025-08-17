@@ -14,6 +14,7 @@ public class MyJobs
     [TickerFunction(functionName: nameof(MyCronTicker), cronExpression: "* * * * *")]
     public void MyCronTicker()
     {
-        Console.WriteLine("Cron ticker fired!");
+        _logger.LogDebug("Cron ticker fired!");
+        //Console.WriteLine("Cron ticker fired!");
     }
 }

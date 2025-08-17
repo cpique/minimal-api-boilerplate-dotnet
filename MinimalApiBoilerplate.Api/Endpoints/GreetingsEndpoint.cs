@@ -25,7 +25,9 @@ public static class GreetingsEndpoint
 
     private static IResult HelloWorldV1(ILogger<Program> logger, HttpContext context)
     {
-        return DoWork(context.GetRequestedApiVersion());
+        var result = DoWork(context.GetRequestedApiVersion());
+        logger.LogDebug("Endpoint executed successfully.");
+        return result;
     }
 
     private static IResult HelloWorldV2(ILogger<Program> logger, HttpContext context)
@@ -42,7 +44,6 @@ public static class GreetingsEndpoint
             StatusCode = HttpStatusCode.OK
         };
 
-        Console.WriteLine("Endpoint executed successfully.");
         return Results.Ok(response);
     }
 }
