@@ -51,13 +51,8 @@ public class Program
         // Configure Serilog
         builder.Host.UseSerilog((context, services, configuration) =>
         {
-            configuration
-                .ReadFrom.Configuration(context.Configuration)
-                .ReadFrom.Services(services)
-                .WriteTo.Console()
-                .WriteTo.File(
-                    path: context.Configuration.GetValue<string>("Logging:File:Path"),
-                    rollingInterval: RollingInterval.Day);
+            configuration.ReadFrom.Configuration(context.Configuration)
+                         .ReadFrom.Services(services);
         });
 
         var app = builder.Build();
