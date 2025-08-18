@@ -22,10 +22,5 @@ public class MongoDbContext
         _database = client.GetDatabase(mongoSettings.DatabaseName);
     }
 
-    public IMongoCollection<T> GetCollection<T>(string collectionName)
-    {
-        return _database.GetCollection<T>(collectionName);
-    }
-
     public IMongoCollection<Item> Items => _database.GetCollection<Item>("items");
 }

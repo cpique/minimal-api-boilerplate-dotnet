@@ -1,3 +1,5 @@
 ﻿1-Add integration tests
 2-Improve unit tests, they are just the start of the effort
 3-Check if serilog setup is correct
+4-improve startup/program class, extract code to another configure methods if possible
+5-add seeder using bogus and chatgpt chat

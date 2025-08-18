@@ -27,33 +27,16 @@ public class Program
             options.AssumeDefaultVersionWhenUnspecified = true;
         });
 
-        // Add rate limiting. TODO: configure values in appsettings. Extract to another class using ext methods like the others
-        //TODO name fixed should be  aconstants
-        //TODO currently only using it in mapget /, add it to more places
-        builder.Services.AddRateLimiter(options =>
-        {
-            options.AddFixedWindowLimiter("fixed", limiterOptions =>
-            {
-                limiterOptions.PermitLimit = 5;           // 5 requests
-                limiterOptions.Window = TimeSpan.FromSeconds(10); // per 10 seconds
-                limiterOptions.QueueLimit = 0;
-            });
-        });
-
         builder.ConfigureAppSettings();
+
+        builder.Services.ConfigureRateLimiter();
         builder.Services.ConfigureMongo();
         builder.Services.ConfigureServices();
         builder.Services.ConfigureRepositories();
         builder.Services.ConfigureValidators();
         builder.Services.ConfigureTickerQ();
 
-
-        // Configure Serilog
-        builder.Host.UseSerilog((context, services, configuration) =>
-        {
-            configuration.ReadFrom.Configuration(context.Configuration)
-                         .ReadFrom.Services(services);
-        });
+        builder.ConfigureSerilog();
 
         var app = builder.Build();
 
