@@ -39,7 +39,7 @@ public static class ItemsEndpoint
             StatusCode = HttpStatusCode.OK
         };
 
-        Console.WriteLine("Endpoint executed successfully.");
+        logger.LogDebug("Endpoint executed successfully.");
         return Results.Ok(response);
     }
 
@@ -56,7 +56,7 @@ public static class ItemsEndpoint
             StatusCode = HttpStatusCode.OK
         };
 
-        Console.WriteLine("Endpoint executed successfully.");
+        logger.LogDebug("Endpoint executed successfully.");
         return Results.Ok(response);
     }
 
@@ -73,7 +73,7 @@ public static class ItemsEndpoint
             StatusCode = HttpStatusCode.OK
         };
 
-        Console.WriteLine("Endpoint executed successfully.");
+        logger.LogDebug("Endpoint executed successfully.");
         return Results.Ok(response);
     }
 
@@ -81,7 +81,7 @@ public static class ItemsEndpoint
     {
         if (!request.TryValidate(validator, out var error)) return error!;
         await service.AddAsync(request);
-        Console.WriteLine("Endpoint executed successfully.");
+        logger.LogDebug("Endpoint executed successfully.");
         return Results.Created();
     }
 
@@ -90,7 +90,7 @@ public static class ItemsEndpoint
         if (!request.TryValidate(validator, out var error)) return error!;
         //TODO make sure they update only what they can
         await service.UpdateAsync(request);
-        Console.WriteLine("Endpoint executed successfully.");
+        logger.LogDebug("Endpoint executed successfully.");
         return Results.Ok();
     }
 
@@ -98,7 +98,7 @@ public static class ItemsEndpoint
     {
         //TODO make sure they delete only what they can
         await service.DeleteAsync(id);
-        Console.WriteLine("Endpoint executed successfully.");
+        logger.LogDebug("Endpoint executed successfully.");
         return Results.NoContent();
     }
 }

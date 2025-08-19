@@ -15,6 +15,5 @@ public class MyJobs
     public void MyCronTicker()
     {
         _logger.LogDebug("Cron ticker fired!");
-        //Console.WriteLine("Cron ticker fired!");
     }
 }
